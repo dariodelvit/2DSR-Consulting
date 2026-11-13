@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2DRS Consulting — Consultoría estratégica y operativa</title>
+  <meta name="description" content="2DRS Consulting: consultoría estratégica en marketing, finanzas, operaciones y talento para pymes y nuevos negocios." />
+
+  <!-- Tipografía: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS vía CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            ink: '#0A0A0A',
+            graphite: '#525252',
+            slate2: '#737373',
+            line: '#E5E5E5',
+            soft: '#F0F0F0',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body { -webkit-font-smoothing: antialiased; }
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    /* Panel de metodología */
+    .step-panel { transition: opacity .45s ease, transform .45s ease; }
+    .step-panel.is-hidden { opacity: 0; transform: translateY(8px); pointer-events: none; position: absolute; inset: 0; }
+    /* Enlace activo del scroll spy */
+    .nav-link.active { color: #0A0A0A; }
+    .nav-link.active::after { transform: scaleX(1); }
+    .nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 1px; width: 100%; background: #0A0A0A; transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+    /* Estados de validación */
+    .field { transition: border-color .25s ease; }
+    .field.invalid { border-color: #0A0A0A; border-bottom-style: dashed; }
+    .field.valid { border-color: #0A0A0A; }
+    ::selection { background: #0A0A0A; color: #fff; }
+  </style>
+</head>
+
+<body class="bg-white text-ink font-sans">
+
+  <!-- ============ 1. HEADER / NAVBAR ============ -->
+  <header id="header" class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur border-b border-transparent transition-colors duration-300">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between" aria-label="Navegación principal">
+      <a href="#inicio" class="text-[15px] font-extrabold tracking-[0.08em] uppercase">2DRS<span class="font-light text-slate2"> Consulting</span></a>
+
+      <ul class="hidden md:flex items-center gap-10 text-sm text-graphite">
+        <li><a href="#servicios" class="nav-link relative hover:text-ink transition-colors">Servicios</a></li>
+        <li><a href="#metodologia" class="nav-link relative hover:text-ink transition-colors">Metodología</a></li>
+        <li><a href="#equipo" class="nav-link relative hover:text-ink transition-colors">Equipo</a></li>
+        <li><a href="#contacto" class="nav-link relative hover:text-ink transition-colors">Contacto</a></li>
+      </ul>
+
+      <div class="flex items-center gap-4">
+        <a href="#contacto" class="hidden sm:inline-flex bg-ink text-white text-sm px-5 py-2.5 rounded-sm hover:opacity-80 hover:-translate-y-0.5 transition-all duration-300">Agendar diagnóstico</a>
+        <!-- Botón menú móvil -->
+        <button id="menuBtn" class="md:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5" aria-label="Abrir menú" aria-expanded="false">
+          <span class="block w-6 h-px bg-ink transition-transform duration-300"></span>
+          <span class="block w-6 h-px bg-ink transition-transform duration-300"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-line bg-white">
+      <ul class="px-6 py-6 space-y-5 text-lg">
+        <li><a href="#servicios" class="mobile-link block">Servicios</a></li>
+        <li><a href="#metodologia" class="mobile-link block">Metodología</a></li>
+        <li><a href="#equipo" class="mobile-link block">Equipo</a></li>
+        <li><a href="#contacto" class="mobile-link block">Contacto</a></li>
+        <li><a href="#contacto" class="mobile-link inline-flex bg-ink text-white text-sm px-5 py-3 rounded-sm">Agendar diagnóstico</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ 2. HERO ============ -->
+    <section id="inicio" class="pt-40 pb-24 lg:pt-52 lg:pb-32">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <p class="reveal text-[11px] tracking-[0.3em] uppercase text-slate2 mb-8">Consultoría estratégica y operativa</p>
+        <h1 class="reveal text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.05] tracking-tight max-w-5xl">
+          Transformamos pymes y nuevos negocios en estructuras eficientes, rentables y escalables.
+        </h1>
+        <p class="reveal mt-8 text-lg text-graphite max-w-2xl leading-relaxed">
+          Especialización integral en marketing, finanzas, operaciones y talento para acompañar el crecimiento empresarial con criterio técnico.
+        </p>
+        <div class="reveal mt-12 flex flex-col sm:flex-row sm:items-center gap-6">
+          <a href="#contacto" class="inline-flex justify-center bg-ink text-white px-7 py-4 text-sm rounded-sm hover:opacity-80 hover:-translate-y-0.5 transition-all duration-300">Solicitar asesoría</a>
+          <a href="#servicios" class="group inline-flex items-center gap-2 text-sm text-ink">
+            Explorar áreas de práctica
+            <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+
+        <!-- Métricas clave -->
+        <dl class="reveal mt-24 grid grid-cols-2 lg:grid-cols-4 border-t border-line">
+          <div class="py-8 pr-6 border-b lg:border-b-0 border-line">
+            <dt class="text-xs uppercase tracking-[0.2em] text-slate2">Áreas</dt>
+            <dd class="mt-3 text-4xl font-semibold"><span class="counter" data-target="4">0</span></dd>
+            <p class="mt-1 text-sm text-graphite">de especialización</p>
+          </div>
+          <div class="py-8 px-6 border-l border-b lg:border-b-0 border-line">
+            <dt class="text-xs uppercase tracking-[0.2em] text-slate2">Diagnóstico</dt>
+            <dd class="mt-3 text-4xl font-semibold"><span class="counter" data-target="360">0</span>°</dd>
+            <p class="mt-1 text-sm text-graphite">visión integral</p>
+          </div>
+          <div class="py-8 pr-6 lg:px-6 lg:border-l border-line">
+            <dt class="text-xs uppercase tracking-[0.2em] text-slate2">Metodología</dt>
+            <dd class="mt-3 text-4xl font-semibold">Ágil</dd>
+            <p class="mt-1 text-sm text-graphite">iterativa y medible</p>
+          </div>
+          <div class="py-8 px-6 border-l border-line">
+            <dt class="text-xs uppercase tracking-[0.2em] text-slate2">Fases</dt>
+            <dd class="mt-3 text-4xl font-semibold"><span class="counter" data-target="4">0</span></dd>
+            <p class="mt-1 text-sm text-graphite">de acompañamiento</p>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ 3. SERVICIOS ============ -->
+    <section id="servicios" class="py-24 lg:py-32 border-t border-line">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="grid lg:grid-cols-12 gap-10 mb-16">
+          <div class="lg:col-span-4">
+            <p class="reveal text-[11px] tracking-[0.3em] uppercase text-slate2">01 — Servicios</p>
+          </div>
+          <div class="lg:col-span-8">
+            <h2 class="reveal text-3xl lg:text-5xl font-semibold tracking-tight leading-tight">Cuatro áreas fundacionales. Una sola visión de negocio.</h2>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-px bg-line border border-line">
+          <!-- Área 1 -->
+          <article class="reveal group bg-white p-8 lg:p-12 hover:bg-[#FAFAFA] transition-colors duration-300">
+            <div class="flex justify-between items-start">
+              <span class="text-xs text-slate2 tracking-widest">01</span>
+              <span class="text-slate2 group-hover:text-ink group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300">↗</span>
+            </div>
+            <h3 class="mt-12 text-2xl font-semibold tracking-tight">Marketing, Ventas y Captación Comercial</h3>
+            <p class="mt-4 text-graphite leading-relaxed">Estrategia de posicionamiento de marca y marketing digital para pymes, diseño de embudos de captación, optimización de canales comerciales, comercio electrónico y presencia en redes para nuevos negocios.</p>
+            <p class="mt-8 pt-6 border-t border-line text-sm text-slate2">Dirigida por <span class="text-ink">Darío Delgado</span> · Director General / Coordinador</p>
+          </article>
+          <!-- Área 2 -->
+          <article class="reveal group bg-white p-8 lg:p-12 hover:bg-[#FAFAFA] transition-colors duration-300">
+            <div class="flex justify-between items-start">
+              <span class="text-xs text-slate2 tracking-widest">02</span>
+              <span class="text-slate2 group-hover:text-ink group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300">↗</span>
+            </div>
+            <h3 class="mt-12 text-2xl font-semibold tracking-tight">Finanzas y Control de Gestión</h3>
+            <p class="mt-4 text-graphite leading-relaxed">Control presupuestario y análisis de costes para proyectos emprendedores, planificación de tesorería, viabilidad económico-financiera y tramitación y asesoramiento en subvenciones públicas y líneas de financiación.</p>
+            <p class="mt-8 pt-6 border-t border-line text-sm text-slate2">Dirigida por <span class="text-ink">Severino Engonga</span> · Consultor Senior</p>
+          </article>
+          <!-- Área 3 -->
+          <article class="reveal group bg-white p-8 lg:p-12 hover:bg-[#FAFAFA] transition-colors duration-300">
+            <div class="flex justify-between items-start">
+              <span class="text-xs text-slate2 tracking-widest">03</span>
+              <span class="text-slate2 group-hover:text-ink group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300">↗</span>
+            </div>
+            <h3 class="mt-12 text-2xl font-semibold tracking-tight">Operaciones y Logística</h3>
+            <p class="mt-4 text-graphite leading-relaxed">Optimización y reingeniería de procesos internos de pymes, gestión de cadena de suministro, inventarios y compras eficientes, y digitalización e implantación de herramientas de gestión operativa.</p>
+            <p class="mt-8 pt-6 border-t border-line text-sm text-slate2">Dirigida por <span class="text-ink">Randolph Lagraveri</span> · Consultor Senior</p>
+          </article>
+          <!-- Área 4 -->
+          <article class="reveal group bg-white p-8 lg:p-12 hover:bg-[#FAFAFA] transition-colors duration-300">
+            <div class="flex justify-between items-start">
+              <span class="text-xs text-slate2 tracking-widest">04</span>
+              <span class="text-slate2 group-hover:text-ink group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300">↗</span>
+            </div>
+            <h3 class="mt-12 text-2xl font-semibold tracking-tight">Recursos Humanos y Gestión del Talento</h3>
+            <p class="mt-4 text-graphite leading-relaxed">Selección de personal cualificado, auditoría de clima laboral, desarrollo y retención del talento clave.</p>
+            <p class="mt-8 pt-6 border-t border-line text-sm text-slate2">Dirigida por <span class="text-ink">Diego Parras</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. METODOLOGÍA (TABS) ============ -->
+    <section id="metodologia" class="py-24 lg:py-32 bg-ink text-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="grid lg:grid-cols-12 gap-10 mb-16">
+          <div class="lg:col-span-4">
+            <p class="reveal text-[11px] tracking-[0.3em] uppercase text-white/50">02 — Metodología</p>
+          </div>
+          <div class="lg:col-span-8">
+            <h2 class="reveal text-3xl lg:text-5xl font-semibold tracking-tight leading-tight">Cómo trabajamos</h2>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+          <!-- Lista de pasos -->
+          <div class="lg:col-span-5" role="tablist" aria-label="Fases de la metodología">
+            <!-- Se rellenan con JS -->
+            <div id="stepTabs" class="border-t border-white/15"></div>
+          </div>
+          <!-- Panel de contenido -->
+          <div class="lg:col-span-7">
+            <div id="stepPanels" class="relative min-h-[320px]"></div>
+            <!-- Barra de progreso -->
+            <div class="mt-10 h-px bg-white/15 overflow-hidden">
+              <div id="stepProgress" class="h-px bg-white transition-all duration-500" style="width:25%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. EQUIPO ============ -->
+    <section id="equipo" class="py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="grid lg:grid-cols-12 gap-10 mb-16">
+          <div class="lg:col-span-4">
+            <p class="reveal text-[11px] tracking-[0.3em] uppercase text-slate2">03 — Equipo directivo</p>
+          </div>
+          <div class="lg:col-span-8">
+            <h2 class="reveal text-3xl lg:text-5xl font-semibold tracking-tight leading-tight">Socios consultores con criterio técnico y visión transversal.</h2>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
+          <!-- Socio 1 -->
+          <article class="reveal group">
+            <div class="aspect-[4/5] bg-soft border border-line overflow-hidden">
+              <img src="IMG/Darío.jpg" alt="Darío Delgado Vitores" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" />
+            </div>
+            <h3 class="mt-6 font-semibold">Darío Delgado Vitores</h3>
+            <p class="text-sm text-slate2 mt-1">Director General / Coordinador · Marketing, Ventas y Captación Comercial</p>
+            <ul class="mt-4 space-y-1.5 text-sm text-graphite leading-relaxed list-disc pl-4 marker:text-slate2">
+              <li>Estrategia de posicionamiento de marca y marketing digital para pymes.</li>
+              <li>Diseño de embudos de captación y optimización de canales comerciales.</li>
+              <li>Comercio electrónico y presencia en redes para nuevos negocios.</li>
+            </ul>
+          </article>
+          <!-- Socio 2 -->
+          <article class="reveal group">
+            <div class="aspect-[4/5] bg-soft border border-line overflow-hidden">
+              <img src="IMG/Severino.jpg" alt="Severino Engonga Owono" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" />
+            </div>
+            <h3 class="mt-6 font-semibold">Severino Engonga Owono</h3>
+            <p class="text-sm text-slate2 mt-1">Consultor Senior · Finanzas y Control de Gestión</p>
+            <ul class="mt-4 space-y-1.5 text-sm text-graphite leading-relaxed list-disc pl-4 marker:text-slate2">
+              <li>Control presupuestario y análisis de costes para proyectos emprendedores.</li>
+              <li>Planificación de tesorería y viabilidad económico-financiera.</li>
+              <li>Tramitación y asesoramiento en subvenciones públicas y líneas de financiación.</li>
+            </ul>
+          </article>
+          <!-- Socio 3 -->
+          <article class="reveal group">
+            <div class="aspect-[4/5] bg-soft border border-line overflow-hidden">
+              <img src="IMG/Randolph.jpg" alt="Randolph Abdiel Lagraveri Adán" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" />
+            </div>
+            <h3 class="mt-6 font-semibold">Randolph Abdiel Lagraveri Adán</h3>
+            <p class="text-sm text-slate2 mt-1">Consultor Senior · Operaciones y Logística</p>
+            <ul class="mt-4 space-y-1.5 text-sm text-graphite leading-relaxed list-disc pl-4 marker:text-slate2">
+              <li>Optimización y reingeniería de procesos internos de pymes.</li>
+              <li>Gestión de cadena de suministro, inventarios y compras eficientes.</li>
+              <li>Digitalización e implantación de herramientas de gestión operativa.</li>
+            </ul>
+          </article>
+          <!-- Socio 4 -->
+          <article class="reveal group">
+            <div class="aspect-[4/5] bg-soft border border-line flex items-center justify-center overflow-hidden">
+              <span class="text-5xl font-light text-slate2 group-hover:scale-105 group-hover:text-ink transition-all duration-500">DP</span>
+            </div>
+            <h3 class="mt-6 font-semibold">Diego Parras Soto</h3>
+            <p class="text-sm text-slate2 mt-1">Socio · Recursos Humanos y Talento</p>
+            <p class="text-sm text-graphite mt-4 leading-relaxed">Especializado en selección, cultura organizacional y desarrollo del talento clave.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. CONTACTO / FORMULARIO ============ -->
+    <section id="contacto" class="py-24 lg:py-32 border-t border-line bg-[#FAFAFA]">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-16">
+        <div class="lg:col-span-5">
+          <p class="reveal text-[11px] tracking-[0.3em] uppercase text-slate2">04 — Contacto</p>
+          <h2 class="reveal mt-8 text-3xl lg:text-5xl font-semibold tracking-tight leading-tight">Agenda tu diagnóstico preliminar.</h2>
+          <p class="reveal mt-6 text-graphite leading-relaxed max-w-md">Cuéntanos tu situación. Respondemos en menos de 48 horas laborables con una propuesta de primera sesión.</p>
+          <div class="reveal mt-12 space-y-3 text-sm">
+            <p><span class="text-slate2 inline-block w-20">Email</span> <a href="mailto:hola@2drs.consulting" class="hover:opacity-60 transition-opacity">hola@2drs.consulting</a></p>
+            <p><span class="text-slate2 inline-block w-20">Sede</span> Madrid, España</p>
+          </div>
+        </div>
+
+        <form id="contactForm" class="reveal lg:col-span-7 space-y-10" novalidate>
+          <div class="grid sm:grid-cols-2 gap-10">
+            <div>
+              <label for="nombre" class="text-xs uppercase tracking-[0.2em] text-slate2">Nombre *</label>
+              <input id="nombre" name="nombre" type="text" autocomplete="name" class="field mt-3 w-full bg-transparent border-0 border-b border-line py-3 focus:outline-none focus:border-ink" />
+              <p class="error mt-2 text-xs text-ink h-4"></p>
+            </div>
+            <div>
+              <label for="empresa" class="text-xs uppercase tracking-[0.2em] text-slate2">Empresa / Proyecto *</label>
+              <input id="empresa" name="empresa" type="text" autocomplete="organization" class="field mt-3 w-full bg-transparent border-0 border-b border-line py-3 focus:outline-none focus:border-ink" />
+              <p class="error mt-2 text-xs text-ink h-4"></p>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-10">
+            <div>
+              <label for="email" class="text-xs uppercase tracking-[0.2em] text-slate2">Correo *</label>
+              <input id="email" name="email" type="email" autocomplete="email" class="field mt-3 w-full bg-transparent border-0 border-b border-line py-3 focus:outline-none focus:border-ink" />
+              <p class="error mt-2 text-xs text-ink h-4"></p>
+            </div>
+            <div>
+              <label for="area" class="text-xs uppercase tracking-[0.2em] text-slate2">Área de interés *</label>
+              <select id="area" name="area" class="field mt-3 w-full bg-transparent border-0 border-b border-line py-3 focus:outline-none focus:border-ink appearance-none cursor-pointer">
+                <option value="">Selecciona un área</option>
+                <option>Marketing, Ventas y Captación</option>
+                <option>Finanzas y Control de Gestión</option>
+                <option>Operaciones y Logística</option>
+                <option>Recursos Humanos y Talento</option>
+                <option>Diagnóstico integral 360°</option>
+              </select>
+              <p class="error mt-2 text-xs text-ink h-4"></p>
+            </div>
+          </div>
+          <div>
+            <label for="mensaje" class="text-xs uppercase tracking-[0.2em] text-slate2">Mensaje breve *</label>
+            <textarea id="mensaje" name="mensaje" rows="4" maxlength="500" class="field mt-3 w-full bg-transparent border-0 border-b border-line py-3 focus:outline-none focus:border-ink resize-none"></textarea>
+            <div class="flex justify-between">
+              <p class="error mt-2 text-xs text-ink h-4"></p>
+              <span id="charCount" class="mt-2 text-xs text-slate2">0/500</span>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-6">
+            <button type="submit" class="bg-ink text-white px-8 py-4 text-sm rounded-sm hover:opacity-80 hover:-translate-y-0.5 transition-all duration-300">Enviar solicitud</button>
+            <p class="text-xs text-slate2">Al enviar aceptas nuestra <a href="#" class="underline underline-offset-4">política de privacidad</a>.</p>
+          </div>
+          <p id="formSuccess" class="hidden text-sm border border-ink px-5 py-4">Gracias. Hemos recibido tu solicitud y te contactaremos en breve.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ 7. FOOTER ============ -->
+  <footer class="border-t border-line">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-14 grid gap-10 md:grid-cols-3 text-sm">
+      <div>
+        <p class="font-extrabold tracking-[0.08em] uppercase">2DRS<span class="font-light text-slate2"> Consulting</span></p>
+        <p class="mt-4 text-slate2 leading-relaxed">Consultoría estratégica y operativa para pymes y nuevos negocios.</p>
+      </div>
+      <div class="text-slate2 space-y-2">
+        <p>2DRS Consulting S.L.</p>
+        <p>Madrid, España</p>
+        <p>hola@2drs.consulting</p>
+      </div>
+      <div class="md:text-right space-y-2">
+        <a href="#" class="block text-graphite hover:text-ink transition-colors">Política de privacidad</a>
+        <a href="#" class="block text-graphite hover:text-ink transition-colors">Aviso legal</a>
+        <a href="#inicio" class="block text-graphite hover:text-ink transition-colors">Volver arriba ↑</a>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <p class="max-w-7xl mx-auto px-6 lg:px-10 py-6 text-xs text-slate2">© <span id="year"></span> 2DRS Consulting. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      /* --- Header: borde al hacer scroll --- */
+      const header = document.getElementById('header');
+      const onScroll = () => header.classList.toggle('border-line', window.scrollY > 10);
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+      /* --- Menú móvil --- */
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const bars = menuBtn.querySelectorAll('span');
+      const toggleMenu = (open) => {
+        mobileMenu.classList.toggle('hidden', !open);
+        menuBtn.setAttribute('aria-expanded', open);
+        bars[0].style.transform = open ? 'translateY(3.5px) rotate(45deg)' : '';
+        bars[1].style.transform = open ? 'translateY(-3.5px) rotate(-45deg)' : '';
+      };
+      menuBtn.addEventListener('click', () => toggleMenu(mobileMenu.classList.contains('hidden')));
+      document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+
+      /* --- Scroll spy --- */
+      const navLinks = document.querySelectorAll('.nav-link');
+      const spy = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      ['servicios', 'metodologia', 'equipo', 'contacto'].forEach(id => spy.observe(document.getElementById(id)));
+
+      /* --- Reveal on scroll --- */
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObs.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+      /* --- Contadores animados --- */
+      const countObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target, target = +el.dataset.target, start = performance.now(), dur = 1400;
+          const tick = now => {
+            const p = Math.min((now - start) / dur, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          countObs.unobserve(el);
+        });
+      });
+      document.querySelectorAll('.counter').forEach(c => countObs.observe(c));
+
+      /* --- Metodología: tabs --- */
+      const steps = [
+        { title: 'Diagnóstico preliminar', time: 'Semanas 1–2',
+          text: 'Analizamos la situación actual de tu negocio desde las cuatro áreas: comercial, financiera, operativa y de talento. Identificamos cuellos de botella, riesgos y oportunidades.',
+          items: ['Entrevistas con dirección', 'Auditoría de datos clave', 'Informe de diagnóstico 360°'] },
+        { title: 'Diseño estratégico', time: 'Semanas 3–4',
+          text: 'Traducimos el diagnóstico en una hoja de ruta priorizada, con objetivos cuantificables, responsables y presupuesto asociado.',
+          items: ['Plan estratégico por áreas', 'KPIs y objetivos SMART', 'Priorización por impacto'] },
+        { title: 'Implementación y despliegue', time: 'Meses 2–4',
+          text: 'Acompañamos al equipo en la ejecución, en sprints cortos, asegurando que cada iniciativa se implante con rigor y sin fricciones.',
+          items: ['Sprints de ejecución', 'Formación de equipos', 'Herramientas y procesos'] },
+        { title: 'Medición y optimización continua', time: 'Continuo',
+          text: 'Medimos resultados, revisamos desviaciones y ajustamos la estrategia para garantizar un crecimiento sostenido y escalable.',
+          items: ['Cuadros de mando', 'Revisiones mensuales', 'Mejora iterativa'] },
+      ];
+      const tabsEl = document.getElementById('stepTabs');
+      const panelsEl = document.getElementById('stepPanels');
+      const progress = document.getElementById('stepProgress');
+
+      steps.forEach((s, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        tabsEl.insertAdjacentHTML('beforeend', `
+          <button role="tab" id="tab-${i}" aria-controls="panel-${i}" data-i="${i}"
+            class="step-tab group w-full flex items-center justify-between text-left py-6 border-b border-white/15 transition-colors duration-300">
+            <span class="flex items-baseline gap-6">
+              <span class="text-xs text-white/40">${n}</span>
+              <span class="tab-title text-lg lg:text-xl text-white/50 group-hover:text-white transition-colors duration-300">${s.title}</span>
+            </span>
+            <span class="tab-arrow text-white/40 transition-transform duration-300">→</span>
+          </button>`);
+        panelsEl.insertAdjacentHTML('beforeend', `
+          <div role="tabpanel" id="panel-${i}" aria-labelledby="tab-${i}" class="step-panel ${i ? 'is-hidden' : ''}">
+            <p class="text-xs uppercase tracking-[0.3em] text-white/40">Paso ${n} · ${s.time}</p>
+            <h3 class="mt-6 text-3xl lg:text-4xl font-semibold tracking-tight">${s.title}</h3>
+            <p class="mt-6 text-white/70 leading-relaxed max-w-xl">${s.text}</p>
+            <ul class="mt-10 grid sm:grid-cols-3 gap-px bg-white/15 border border-white/15">
+              ${s.items.map(it => `<li class="bg-ink p-5 text-sm text-white/80">${it}</li>`).join('')}
+            </ul>
+          </div>`);
+      });
+
+      const tabs = tabsEl.querySelectorAll('.step-tab');
+      const panels = panelsEl.querySelectorAll('.step-panel');
+      const activate = i => {
+        tabs.forEach((t, j) => {
+          const on = i === j;
+          t.setAttribute('aria-selected', on);
+          t.tabIndex = on ? 0 : -1;
+          t.querySelector('.tab-title').classList.toggle('text-white', on);
+          t.querySelector('.tab-title').classList.toggle('text-white/50', !on);
+          t.querySelector('.tab-arrow').style.transform = on ? 'translateX(4px)' : '';
+          t.querySelector('.tab-arrow').classList.toggle('text-white', on);
+        });
+        panels.forEach((p, j) => p.classList.toggle('is-hidden', i !== j));
+        progress.style.width = ((i + 1) / steps.length * 100) + '%';
+      };
+      tabs.forEach(t => {
+        t.addEventListener('click', () => activate(+t.dataset.i));
+        t.addEventListener('keydown', e => {
+          const i = +t.dataset.i;
+          if (['ArrowDown', 'ArrowRight'].includes(e.key)) { e.preventDefault(); const n = (i + 1) % steps.length; activate(n); tabs[n].focus(); }
+          if (['ArrowUp', 'ArrowLeft'].includes(e.key)) { e.preventDefault(); const n = (i - 1 + steps.length) % steps.length; activate(n); tabs[n].focus(); }
+        });
+      });
+      activate(0);
+
+      /* --- Formulario: validación en tiempo real --- */
+      const form = document.getElementById('contactForm');
+      const rules = {
+        nombre: v => v.trim().length >= 2 || 'Introduce tu nombre (mín. 2 caracteres).',
+        empresa: v => v.trim().length >= 2 || 'Indica tu empresa o proyecto.',
+        email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Introduce un correo válido.',
+        area: v => v !== '' || 'Selecciona un área de interés.',
+        mensaje: v => v.trim().length >= 10 || 'El mensaje debe tener al menos 10 caracteres.',
+      };
+      const validate = field => {
+        const res = rules[field.name](field.value);
+        const err = field.parentElement.querySelector('.error');
+        const ok = res === true;
+        field.classList.toggle('invalid', !ok);
+        field.classList.toggle('valid', ok);
+        err.textContent = ok ? '' : res;
+        return ok;
+      };
+      Object.keys(rules).forEach(name => {
+        const f = form.elements[name];
+        const evt = f.tagName === 'SELECT' ? 'change' : 'input';
+        f.addEventListener(evt, () => { if (f.dataset.touched) validate(f); });
+        f.addEventListener('blur', () => { f.dataset.touched = 1; validate(f); });
+      });
+      const msg = form.elements.mensaje, counter = document.getElementById('charCount');
+      msg.addEventListener('input', () => counter.textContent = `${msg.value.length}/500`);
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const fields = Object.keys(rules).map(n => form.elements[n]);
+        fields.forEach(f => f.dataset.touched = 1);
+        const allOk = fields.map(validate).every(Boolean);
+        if (!allOk) { fields.find(f => f.classList.contains('invalid')).focus(); return; }
+        const success = document.getElementById('formSuccess');
+        success.classList.remove('hidden');
+        form.reset(); counter.textContent = '0/500';
+        fields.forEach(f => { f.classList.remove('valid'); delete f.dataset.touched; });
+        setTimeout(() => success.classList.add('hidden'), 6000);
+      });
+    });
+  </script>
+</body>
+</html>
